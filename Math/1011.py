@@ -1,13 +1,15 @@
 t = int(input())
-x, y = map(int, input().split())
-m = y -x
 
-for i in range(t):
-    if m < 4:
-        m = m 
-    else:
-        for j in range(m-2):
-            j += j 
-            
-            
-             
+for _ in range(t):
+    x, y = map(int, input().split())
+    dist = y - x
+    count = 0
+    start = 1
+    num_sum = 0
+
+    while num_sum < dist:
+        count += 1
+        num_sum = num_sum + start
+        if count % 2 == 0:
+            start += 1
+    print(count)

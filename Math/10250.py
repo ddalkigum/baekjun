@@ -1,16 +1,11 @@
 t = int(input())
-x = 1
-y = 1
-
 
 for i in range(t):
-    w, h, a = map(int, input().split())
-    while y > 0:
-        y = a % (h - w)
-        x += 1
-        if y < h - w:
-            break
+    h, w, o = map(int, input().split())
+    floor = o % h
+    room_number = o // h + 1
+    if o % h == 0:
+        floor = h
+        room_number = o // h
 
-    print(y * 100 + x)
-    if x != 1:
-        print()
+    print(floor * 100 + room_number)
