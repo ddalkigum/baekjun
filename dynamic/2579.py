@@ -8,7 +8,7 @@ for _ in range(N):
 
 for j in range(len(arr)):
     if j == 0:
-        continue
+        sum_num[j] = arr[0]
     elif j == 1:
         sum_num[j] = arr[0] + arr[j]
     elif j == 2:

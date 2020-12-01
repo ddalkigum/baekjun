@@ -1,15 +1,24 @@
-M = int(input())
-N = int(input())
+import sys
+
+M, N = map(int, sys.stdin.readline().split())
+
+prime_list = []
+
+
+def prime(number):
+    count = 0
+    for i in range(1, number):
+        if number % i == 0:
+            count += 1
+    if count == 1:
+        return True
+    else:
+        return False
 
 
 for i in range(M, N + 1):
-    count = 0
-    for j in range(1, i + 1):
-        if j % 2 == 0:
-            break
-        elif i % j == 0:
-            count += 1
-            if count > 2:
-                break
-    if count == 2:
-        print(i)
+    if prime(i) == True:
+        prime_list.append(i)
+
+for j in prime_list:
+    sys.stdout.write((j))
