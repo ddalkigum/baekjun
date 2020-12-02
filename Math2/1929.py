@@ -1,24 +1,19 @@
 import sys
 
-M, N = map(int, sys.stdin.readline().split())
+N, M = map(int, sys.stdin.readline().split())
+arr = list(range(N, M + 1))
 
-prime_list = []
 
-
-def prime(number):
-    count = 0
-    for i in range(1, number):
-        if number % i == 0:
-            count += 1
-    if count == 1:
-        return True
-    else:
+def prime_number(a):
+    if a == 1:
         return False
+    else:
+        for i in range(2, int(a ** 0.5) + 1):
+            if a % i == 0:
+                return False
+        return True
 
 
-for i in range(M, N + 1):
-    if prime(i) == True:
-        prime_list.append(i)
-
-for j in prime_list:
-    sys.stdout.write((j))
+for i in arr:
+    if prime_number(i):
+        sys.stdout.write(str(i) + "\n")

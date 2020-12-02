@@ -1,9 +1,11 @@
-a = int(input())
-b = int(input())
-c = int(input())
-
-mul = str(a * b * c)
-
+arr = [0] * 10
+num_arr = []
 
 for i in range(10):
-    print(mul.count(str(i)))
+    arr[i] = int(input())
+
+for j in arr:
+    num_arr.append(j % 42)
+
+num_arr = set(num_arr)
+print(len(num_arr))
