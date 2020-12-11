@@ -3,6 +3,7 @@ lost =[2, 4]
 reserve = [1, 3, 5]
 
 def solution(n, lost, reserve):
+    answer = 0
     arr = [1]*n
     for i in lost:
         arr[i-1] = 0
@@ -23,7 +24,8 @@ def solution(n, lost, reserve):
                 elif arr[j+1] ==0:
                     if arr[j] in reserve:
                         arr[j+1] = 1
-    print(arr)
-    answer = 0
+    for k in arr:
+        if k == 1:
+            answer += 1
     return answer
 solution(n, lost, reserve)
