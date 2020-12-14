@@ -1,75 +1,41 @@
-"""
-a = int(input())
-b = int(input())
-c = int(input())
 
-mul = str(a * b * c)
+from multiprocessing import Process, Queue, Value
+import time
 
+def worker(id, number, q):
+    increased_number = 0
 
-for i in range(10):
-    print(mul.count(str(i)))
-"""
-"""
-arr = [0] * 10
-num_arr = []
+    for i in range(number):
+        increased_number += 1
+    
+    print(q)
+    print(dir(q))
 
-for i in range(10):
-    arr[i] = int(input())
+    return
 
-for j in arr:
-    num_arr.append(j % 42)
+if __name__ == "__main__":
 
-num_arr = set(num_arr)
-print(len(num_arr))
-"""
-"""
-N = int(input())
-M = [0] * N
-M = list(map(int, input().split()))
-value_arr = []
-max_value = max(M)
+    start_time = time.time()
+    q = Value("i",0)
 
-for i in M:
-    num = i / max_value * 100
-    value_arr.append(num)
-score = sum(value_arr) / len(value_arr)
-print(score)
-"""
+    th1 = Process(target=worker, args=(1, 50000000, q))
+    th2 = Process(target=worker, args=(2, 50000000, q))
 
+    th1.start()
+    th2.start()
+    th1.join()
+    th2.join()
 
-self_number = []
-co_num = []
+    print("--- %s seconds ---" % (time.time() - start_time))
+    q.put('exit')
 
-numarr = list(range(1, 10001))
+    total = 0
+    while True:
+        tmp = q.get()
+        if tmp == 'exit':
+            break
+        else:
+            total += tmp
 
-for i in numarr:
-    num = int(i)
-    for j in i:
-        num += int(j)
-    self_number.append(num)
-(set(self_number))
-for k in range(10000):
-    if k in self_number:
-        pass
-    else:
-        co_num.append(k)
-for s in co_num:
-    print(s)
-
-    """ 
-    def selfnum(num):
-    ret = num
-    while(num!=0):
-        ret += num % 10
-        num = int(num / 10)
-    return ret
-
-li = list(range(10001))
-
-for i in range(1,10001):
-    tmp = selfnum(i)
-    if tmp <= 10000: li[tmp] = 0
-
-for i in li:
-    if i != 0: print(i)
-    """
+    print("total_number=",end=""), print(total)
+    print("end of main")
