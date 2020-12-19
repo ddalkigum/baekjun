@@ -1,3 +1,4 @@
+
 s =  "A  Sdf Fft "
 
 def solution(s):
@@ -12,7 +13,6 @@ def solution(s):
             count =0
         else:
             answer += i.lower()
-    print(answer)
     return answer
 
 solution(s)
